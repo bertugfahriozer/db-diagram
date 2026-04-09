@@ -1,16 +1,56 @@
+# Dev tooling - VSIX'e dahil edilmez
 .vscode/**
 .github/**
 .editorconfig
 .gitignore
-.vscodeignore
 tsconfig.json
 esbuild.js
-src/**
-node_modules/**
-out/*.map
-*.vsix
 PUBLISHING.md
-README.md
-LICENSE.md
-*.png
-!media/icon.png
+
+# Kaynak dosyalar (derlendi, out/ yeterli)
+src/**
+out/*.map
+
+# DevDependencies - runtime'da gerekmez
+node_modules/@types/**
+node_modules/typescript/**
+node_modules/esbuild/**
+node_modules/@esbuild/**
+node_modules/@vscode/vsce/**
+
+# mysql2 gereksiz dosyalar (charset hex'lerini düşür)
+node_modules/mysql2/test/**
+node_modules/mysql2/benchmarks/**
+node_modules/mysql2/documentation/**
+node_modules/mysql2/examples/**
+node_modules/mysql2/typings/**
+
+# pg gereksiz dosyalar
+node_modules/pg/test/**
+node_modules/pg-pool/test/**
+node_modules/pg-protocol/test/**
+node_modules/pg-types/test/**
+node_modules/pg-connection-string/test/**
+
+# Genel temizlik
+node_modules/**/*.map
+node_modules/**/*.md
+node_modules/**/*.ts
+!node_modules/**/*.d.ts
+node_modules/**/.github/**
+node_modules/**/test/**
+node_modules/**/tests/**
+node_modules/**/example/**
+node_modules/**/examples/**
+node_modules/**/benchmark/**
+node_modules/**/benchmarks/**
+
+# Paket dosyaları
+*.vsix
+
+# Mac OS artifacts
+__MACOSX/**
+
+# Root level icons (media/icon.png kullanılıyor)
+icon.png
+icon.svg

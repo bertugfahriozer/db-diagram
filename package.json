@@ -4,6 +4,7 @@
   "description": "Visual database designer and ERD tool for MySQL and PostgreSQL. Create, edit and export diagrams.",
   "version": "1.0.0",
   "publisher": "bertugfahriozer",
+  "icon": "media/icon.png",
   "author": {
     "name": "Bertuğ Fahri Özer"
   },
@@ -14,7 +15,9 @@
     "erd",
     "mysql",
     "postgresql",
-    "sql"
+    "sql",
+    "schema",
+    "visualization"
   ],
   "repository": {
     "type": "git",
@@ -24,13 +27,23 @@
   "bugs": {
     "url": "https://github.com/bertugfahriozer/db-diagram/issues"
   },
+  "galleryBanner": {
+    "color": "#0d0f18",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
   "categories": [
-    "Visualization"
+    "Visualization",
+    "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:dbDiagram.connect",
+    "onCommand:dbDiagram.openDiagram",
+    "onCommand:dbDiagram.disconnect",
+    "onView:dbDiagramConnections"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -84,6 +97,7 @@
   "scripts": {
     "vscode:prepublish": "node esbuild.js",
     "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
