@@ -1,0 +1,58 @@
+{
+  "name": "db-diagram",
+  "displayName": "DB Diagram — Visual Database Designer",
+  "description": "MySQL & PostgreSQL ERD designer. Add tables, columns, relationships. Migration export, Schema Diff, Snapshots, Query Builder.",
+  "version": "2.0.0",
+  "license": "MIT",
+  "publisher": "bertug",
+  "engines": { "vscode": "^1.70.0" },
+  "categories": ["Other", "Visualization"],
+  "activationEvents": [
+    "onCommand:dbDiagram.connect",
+    "onCommand:dbDiagram.openDiagram",
+    "onCommand:dbDiagram.disconnect",
+    "onView:dbDiagramConnections",
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "dbDiagram.connect", "title": "DB Diagram: Connect to Database", "icon": "$(database)" },
+      { "command": "dbDiagram.openDiagram", "title": "DB Diagram: Open Diagram", "icon": "$(type-hierarchy)" },
+      { "command": "dbDiagram.disconnect", "title": "DB Diagram: Disconnect" },
+      { "command": "dbDiagram.deleteConnection", "title": "Delete Connection", "icon": "$(trash)" }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        { "id": "dbDiagram", "title": "DB Diagram", "icon": "$(database)" }
+      ]
+    },
+    "views": {
+      "dbDiagram": [
+        { "id": "dbDiagramConnections", "name": "Saved Connections" }
+      ]
+    },
+    "menus": {
+      "view/item/context": [
+        { "command": "dbDiagram.deleteConnection", "when": "view == dbDiagramConnections && viewItem == dbConnection", "group": "inline" }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "node esbuild.js",
+    "compile": "node esbuild.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "mysql2": "^3.6.0",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/pg": "^8.10.0",
+    "@types/vscode": "1.70.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+dist/
+
+# Configuration
+.vscode-test/
+
+# VSIX Packages
+*.vsix
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Misc
+.history/
+*.log
