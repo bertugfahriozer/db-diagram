@@ -1,52 +1,28 @@
 {
   "name": "db-diagram-designer",
-  "displayName": "DB Diagram Designer — MySQL & PostgreSQL ERD",
-  "description": "A powerful visual database designer for VS Code. Create, edit, and export ER diagrams for MySQL and PostgreSQL with live schema diff and migration support.",
+  "displayName": "DB Diagram Designer",
+  "description": "Visual database designer and ERD tool for MySQL and PostgreSQL. Create, edit and export diagrams.",
   "version": "1.0.0",
   "publisher": "bertugfahriozer",
   "author": {
     "name": "Bertuğ Fahri Özer"
   },
   "license": "MIT",
-  "icon": "media/icon.png",
-  "qna": "marketplace",
   "keywords": [
     "database",
     "diagram",
     "erd",
     "mysql",
     "postgresql",
-    "sql",
-    "visualization"
+    "sql"
   ],
-  "galleryBanner": {
-    "color": "#0d0f18",
-    "theme": "dark"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bertugfahriozer/db-diagram"
-  },
-  "homepage": "https://github.com/bertugfahriozer/db-diagram",
-  "bugs": {
-    "url": "https://github.com/bertugfahriozer/db-diagram/issues"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/bertugfahriozer"
-  },
   "engines": {
-    "vscode": "^1.70.0"
+    "vscode": "^1.75.0"
   },
   "categories": [
-    "Other",
     "Visualization"
   ],
-  "activationEvents": [
-    "onCommand:dbDiagram.connect",
-    "onCommand:dbDiagram.openDiagram",
-    "onCommand:dbDiagram.disconnect",
-    "onView:dbDiagramConnections"
-  ],
+  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [

@@ -5,6 +5,7 @@
 ## 🚀 Features
 
 ### 📊 Diagram View
+
 | Feature | Description |
 |---------|----------|
 | **Live Connection** | Connects directly to MySQL databases |
@@ -16,6 +17,7 @@
 | **PNG Export** | Save the diagram as PNG |
 
 ### ✏️ Editing
+
 | Feature | Description |
 |---------|----------|
 | **Add Table** | Create new tables with a visual form |
@@ -25,6 +27,7 @@
 | **Raw SQL** | Execute any DDL command |
 
 ### 🔍 Search & Filtering
+
 | Feature | Description |
 |---------|----------|
 | **Table Search** | Filter by table name |
@@ -32,6 +35,7 @@
 | **Type Filter** | Filter by INT, VARCHAR, TEXT, JSON, etc. |
 
 ### 📝 Notes & History
+
 | Feature | Description |
 |---------|----------|
 | **Table Notes** | Add notes to each table, view on hover |
@@ -39,6 +43,7 @@
 | **Schema Diff** | Compare differences between two snapshots |
 
 ### 📦 Migration Export
+
 | Format | Description |
 |--------|----------|
 | **SQL** | ALTER TABLE commands |
