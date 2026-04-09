@@ -2,12 +2,21 @@
   "name": "db-diagram",
   "displayName": "DB Diagram — Visual Database Designer",
   "description": "MySQL & PostgreSQL ERD designer. Add tables, columns, relationships. Migration export, Schema Diff, Snapshots, Query Builder.",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "license": "MIT",
   "publisher": "bertugfahriozer",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#0d0f18",
+    "theme": "dark"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bertugfahriozer/db-diagram"
+  },
+  "homepage": "https://github.com/bertugfahriozer/db-diagram",
+  "bugs": {
+    "url": "https://github.com/bertugfahriozer/db-diagram/issues"
   },
   "sponsor": {
     "url": "https://github.com/sponsors/bertugfahriozer"
