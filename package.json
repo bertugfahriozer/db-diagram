@@ -4,9 +4,7 @@
   "description": "MySQL & PostgreSQL ERD designer. Add tables, columns, relationships. Migration export, Schema Diff, Snapshots, Query Builder.",
   "version": "3.0.0",
   "license": "MIT",
-  {
-    "pricing": "Free"
-  },
+  "pricing": "Free",
   "publisher": "bertugfahriozer",
   "icon": "media/icon.png",
   "galleryBanner": {
@@ -102,7 +100,7 @@
     "@types/pg": "^8.10.0",
     "@types/vscode": "1.70.0",
     "@vscode/vsce": "^3.0.0",
-    "esbuild": "^0.20.0",
+    "esbuild": "^0.25.0",
     "typescript": "^5.0.0"
   }
 }
