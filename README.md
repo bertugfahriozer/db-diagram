@@ -59,7 +59,7 @@
 ### 1. Installation
 
 ```bash
-cd db-diagram-extension
+cd db-diagram-designer
 npm install
 ```
 
@@ -135,7 +135,7 @@ DB Diagram: Open Diagram
 ## 🏗️ Architecture
 
 ```
-db-diagram-extension/
+db-diagram-designer/
 ├── src/
 │   ├── extension.ts              # Entry point, command registrations
 │   ├── db/

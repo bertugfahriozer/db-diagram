@@ -1,9 +1,13 @@
 {
-  "name": "db-diagram",
-  "displayName": "DB Diagram — Visual Database Designer",
-  "description": "MySQL & PostgreSQL ERD designer. Add tables, columns, relationships. Migration export, Schema Diff, Snapshots, Query Builder.",
+  "name": "db-diagram-designer",
+  "displayName": "DB Diagram Designer — MySQL & PostgreSQL ERD",
+  "description": "A powerful visual database designer for VS Code. Create, edit, and export ER diagrams for MySQL and PostgreSQL with live schema diff and migration support.",
   "version": "1.0.0",
   "publisher": "bertugfahriozer",
+  "author": {
+    "name": "Bertuğ Fahri Özer"
+  },
+  "license": "MIT",
   "icon": "media/icon.png",
   "qna": "marketplace",
   "keywords": [

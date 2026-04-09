@@ -15,9 +15,9 @@ esbuild.build({
   platform: 'node',
   target: 'node16',
   sourcemap: false,
-  minify: false,
+  minify: true,
 }).then(() => {
-  console.log('Bundle OK → out/extension.js');
+  console.log('Bundle OK (Minified) → out/extension.js');
 }).catch(e => {
   console.error('Bundle FAILED:', e);
   process.exit(1);
