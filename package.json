@@ -16,6 +16,14 @@
     "postgresql",
     "sql"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bertugfahriozer/db-diagram"
+  },
+  "homepage": "https://github.com/bertugfahriozer/db-diagram",
+  "bugs": {
+    "url": "https://github.com/bertugfahriozer/db-diagram/issues"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
