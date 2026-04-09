@@ -4,9 +4,21 @@
   "description": "MySQL & PostgreSQL ERD designer. Add tables, columns, relationships. Migration export, Schema Diff, Snapshots, Query Builder.",
   "version": "2.0.0",
   "license": "MIT",
-  "publisher": "bertug",
-  "engines": { "vscode": "^1.70.0" },
-  "categories": ["Other", "Visualization"],
+  "publisher": "bertugfahriozer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bertugfahriozer/db-diagram"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/bertugfahriozer"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
   "activationEvents": [
     "onCommand:dbDiagram.connect",
     "onCommand:dbDiagram.openDiagram",
@@ -17,24 +29,50 @@
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      { "command": "dbDiagram.connect", "title": "DB Diagram: Connect to Database", "icon": "$(database)" },
-      { "command": "dbDiagram.openDiagram", "title": "DB Diagram: Open Diagram", "icon": "$(type-hierarchy)" },
-      { "command": "dbDiagram.disconnect", "title": "DB Diagram: Disconnect" },
-      { "command": "dbDiagram.deleteConnection", "title": "Delete Connection", "icon": "$(trash)" }
+      {
+        "command": "dbDiagram.connect",
+        "title": "DB Diagram: Connect to Database",
+        "icon": "$(database)"
+      },
+      {
+        "command": "dbDiagram.openDiagram",
+        "title": "DB Diagram: Open Diagram",
+        "icon": "$(type-hierarchy)"
+      },
+      {
+        "command": "dbDiagram.disconnect",
+        "title": "DB Diagram: Disconnect"
+      },
+      {
+        "command": "dbDiagram.deleteConnection",
+        "title": "Delete Connection",
+        "icon": "$(trash)"
+      }
     ],
     "viewsContainers": {
       "activitybar": [
-        { "id": "dbDiagram", "title": "DB Diagram", "icon": "$(database)" }
+        {
+          "id": "dbDiagram",
+          "title": "DB Diagram",
+          "icon": "$(database)"
+        }
       ]
     },
     "views": {
       "dbDiagram": [
-        { "id": "dbDiagramConnections", "name": "Saved Connections" }
+        {
+          "id": "dbDiagramConnections",
+          "name": "Saved Connections"
+        }
       ]
     },
     "menus": {
       "view/item/context": [
-        { "command": "dbDiagram.deleteConnection", "when": "view == dbDiagramConnections && viewItem == dbConnection", "group": "inline" }
+        {
+          "command": "dbDiagram.deleteConnection",
+          "when": "view == dbDiagramConnections && viewItem == dbConnection",
+          "group": "inline"
+        }
       ]
     }
   },
