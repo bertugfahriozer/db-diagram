@@ -1,4 +1,11 @@
 const esbuild = require('esbuild');
+const fs = require('fs');
+const path = require('path');
+
+// Ensure out/ exists
+if (!fs.existsSync('out')) fs.mkdirSync('out');
+
+// Bundle TypeScript extension
 esbuild.build({
   entryPoints: ['src/extension.ts'],
   bundle: true,
@@ -8,4 +15,10 @@ esbuild.build({
   platform: 'node',
   target: 'node16',
   sourcemap: false,
-}).then(() => console.log('Bundle OK')).catch(e => { console.error(e); process.exit(1); });
+  minify: false,
+}).then(() => {
+  console.log('Bundle OK → out/extension.js');
+}).catch(e => {
+  console.error('Bundle FAILED:', e);
+  process.exit(1);
+});

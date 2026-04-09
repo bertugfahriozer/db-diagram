@@ -22,13 +22,13 @@ export function activate(ctx: vscode.ExtensionContext): void {
     // Connect from saved connection in sidebar
     vscode.commands.registerCommand('dbDiagram.connectSaved', async (id: string) => {
       const cfg = (await tree.list()).find(c => c.id === id);
-      if (!cfg) { vscode.window.showErrorMessage('Connection not found.'); return; }
+      if (!cfg) { vscode.window.showErrorMessage('Bağlantı bulunamadı.'); return; }
       const password = await tree.getPassword(id);
       try {
         await db.connect({ ...cfg, password });
         DiagramPanel.createOrShow(ctx, db, snaps, tree);
       } catch (e: unknown) {
-        vscode.window.showErrorMessage(`Connection error: ${e instanceof Error ? e.message : String(e)}`);
+        vscode.window.showErrorMessage(`Bağlantı hatası: ${e instanceof Error ? e.message : String(e)}`);
       }
     }),
 
@@ -45,15 +45,15 @@ export function activate(ctx: vscode.ExtensionContext): void {
     vscode.commands.registerCommand('dbDiagram.deleteConnection', async (item) => {
       const id = item?.cfg?.id;
       if (!id) return;
-      const ok = await vscode.window.showWarningMessage('Delete this connection?', { modal: true }, 'Delete');
-      if (ok === 'Delete') await tree.delete(id);
+      const ok = await vscode.window.showWarningMessage('Bu bağlantıyı sil?', { modal: true }, 'Sil');
+      if (ok === 'Sil') await tree.delete(id);
     }),
 
     // Disconnect
     vscode.commands.registerCommand('dbDiagram.disconnect', async () => {
       await db.disconnect();
       DiagramPanel.current?.dispose();
-      vscode.window.showInformationMessage('DB Diagram: Disconnected.');
+      vscode.window.showInformationMessage('DB Diagram: Bağlantı kesildi.');
     }),
   );
 }

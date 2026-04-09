@@ -31,4 +31,9 @@ export class DatabaseManager {
   async dropRelationship(t: string, n: string): Promise<void> { return this.adapter!.dropRelationship(t, n); }
   async renameTable(o: string, n: string): Promise<void> { return this.adapter!.renameTable(o, n); }
   async executeRaw(sql: string): Promise<unknown> { return this.adapter!.executeRaw(sql); }
+
+  async query(sql: string): Promise<Record<string, unknown>[]> {
+    if (!this.adapter) throw new Error('Veritabanına bağlı değil.');
+    return this.adapter.query(sql);
+  }
 }

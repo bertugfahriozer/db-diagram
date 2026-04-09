@@ -108,4 +108,9 @@ export class PostgreSQLDatabase {
   async dropRelationship(table: string, name: string): Promise<void> { await this.client!.query(`ALTER TABLE "${table}" DROP CONSTRAINT "${name}"`); }
   async renameTable(o: string, n: string): Promise<void> { await this.client!.query(`ALTER TABLE "${o}" RENAME TO "${n}"`); }
   async executeRaw(sql: string): Promise<unknown> { return this.client!.query(sql); }
+
+  async query(sql: string): Promise<Record<string, unknown>[]> {
+    const result = await this.client!.query(sql);
+    return result.rows as Record<string, unknown>[];
+  }
 }

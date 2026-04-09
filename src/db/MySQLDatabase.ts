@@ -109,4 +109,9 @@ export class MySQLDatabase {
   async dropRelationship(table: string, name: string): Promise<void> { await this.conn!.execute(`ALTER TABLE \`${table}\` DROP FOREIGN KEY \`${name}\``); }
   async renameTable(o: string, n: string): Promise<void> { await this.conn!.execute(`RENAME TABLE \`${o}\` TO \`${n}\``); }
   async executeRaw(sql: string): Promise<unknown> { return this.conn!.execute(sql); }
+
+  async query(sql: string): Promise<Record<string, unknown>[]> {
+    const [rows] = await this.conn!.execute<mysql.RowDataPacket[]>(sql);
+    return rows as Record<string, unknown>[];
+  }
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html><html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-{{N}}'; style-src 'unsafe-inline';">
@@ -141,11 +141,11 @@ textarea{resize:vertical;font-family:var(--M);font-size:11px}
     <span id="badge" class="badge"></span>
     <span id="dbtype" class="dbtype"></span>
     <div class="sep"></div>
-    <div class="sw"><span>⌕</span><input id="ts" placeholder="Search tables…"/><button id="tsc" class="hidden">✕</button></div>
-    <div class="sw"><span>⌕</span><input id="cs" placeholder="Search columns…"/><button id="csc" class="hidden">✕</button></div>
+    <div class="sw"><span>⌕</span><input id="ts" placeholder="Tablo ara…"/><button id="tsc" class="hidden">✕</button></div>
+    <div class="sw"><span>⌕</span><input id="cs" placeholder="Kolon ara…"/><button id="csc" class="hidden">✕</button></div>
     <div class="type-filter">
-      <select id="ctf" title="Type filter">
-        <option value="">All types</option>
+      <select id="ctf" title="Tip filtresi">
+        <option value="">Tüm tipler</option>
         <option value="int">INT</option>
         <option value="varchar">VARCHAR</option>
         <option value="text">TEXT</option>
@@ -158,28 +158,28 @@ textarea{resize:vertical;font-family:var(--M);font-size:11px}
       </select>
     </div>
     <div class="type-filter">
-      <select id="layout-mode" title="Layout mode">
-        <option value="hierarchical">📊 Hierarchical</option>
+      <select id="layout-mode" title="Layout modu">
+        <option value="hierarchical">📊 Hiyerarşik</option>
         <option value="snowflake">❄️ Snowflake</option>
         <option value="compact">📦 Compact</option>
       </select>
     </div>
   </div>
   <div class="tc">
-    <button class="btn bp" id="bnt">＋ Table</button>
-    <button class="btn ba" id="bnr">⟷ Relation</button>
+    <button class="btn bp" id="bnt">＋ Tablo</button>
+    <button class="btn ba" id="bnr">⟷ İlişki</button>
     <button class="btn" id="bnq">⊞ Query</button>
     <button class="btn" id="bns">⌨ SQL</button>
   </div>
   <div class="tr">
     <button class="btn bi" id="bex" title="PNG Export">📷</button>
     <button class="btn bi" id="bmg" title="Migration Export">📦</button>
-    <button class="btn bi" id="bsn" title="Snapshot History">🕐</button>
+    <button class="btn bi" id="bsn" title="Snapshot Geçmişi">🕐</button>
     <button class="btn bi" id="bdf" title="Schema Diff">⊕</button>
     <div class="sep"></div>
-    <button class="btn bi" id="bea" title="Expand All">⊞</button>
-    <button class="btn bi" id="bca" title="Collapse All">⊟</button>
-    <button class="btn bi" id="bft" title="Fit to View">⊡</button>
+    <button class="btn bi" id="bea" title="Tümünü Genişlet">⊞</button>
+    <button class="btn bi" id="bca" title="Tümünü Daralt">⊟</button>
+    <button class="btn bi" id="bft" title="Ekrana Sığdır">⊡</button>
     <button class="btn bi" id="bzi">＋</button>
     <button class="btn bi" id="bzo">－</button>
     <button class="btn bi" id="brf">↻</button>
@@ -200,11 +200,11 @@ textarea{resize:vertical;font-family:var(--M);font-size:11px}
   <g id="gr"></g>
   <g id="gt"></g>
 </svg>
-<div id="mmw"><div class="mmt">Mini Map</div><canvas id="mm" width="180" height="120"></canvas></div>
+<div id="mmw"><div class="mmt">Genel Görünüm</div><canvas id="mm" width="180" height="120"></canvas></div>
 <div id="stats">
-  <div class="st"><span id="stt">0</span><label>Tables</label></div><div class="stsep"></div>
-  <div class="st"><span id="stc">0</span><label>Columns</label></div><div class="stsep"></div>
-  <div class="st"><span id="str">0</span><label>Relations</label></div><div class="stsep"></div>
+  <div class="st"><span id="stt">0</span><label>Tablo</label></div><div class="stsep"></div>
+  <div class="st"><span id="stc">0</span><label>Kolon</label></div><div class="stsep"></div>
+  <div class="st"><span id="str">0</span><label>İlişki</label></div><div class="stsep"></div>
   <div class="st"><span id="sti">0</span><label>Index</label></div>
 </div>
 </div>
@@ -212,83 +212,83 @@ textarea{resize:vertical;font-family:var(--M);font-size:11px}
 </div>
 <div id="ov" class="hidden">
 <div id="m-tbl" class="modal hidden">
-  <div class="mhd"><span class="mtt">🗄 New Table</span><button class="mx">✕</button></div>
+  <div class="mhd"><span class="mtt">🗄 Yeni Tablo</span><button class="mx">✕</button></div>
   <div class="mbd">
-    <div class="fg"><label>Table Name *</label><input id="at-n" placeholder="orders" autocomplete="off"/></div>
-    <div class="fg"><label>Description</label><input id="at-c" placeholder="What does this table contain?"/></div>
-    <div class="fgl">Columns</div>
+    <div class="fg"><label>Tablo Adı *</label><input id="at-n" placeholder="orders" autocomplete="off"/></div>
+    <div class="fg"><label>Açıklama</label><input id="at-c" placeholder="Bu tablo ne içerir?"/></div>
+    <div class="fgl">Kolonlar</div>
     <div id="at-cols"></div>
-    <button class="btn bs" id="at-add" style="margin-top:6px">＋ Column</button>
+    <button class="btn bs" id="at-add" style="margin-top:6px">＋ Kolon</button>
   </div>
-  <div class="mft"><button class="btn" id="at-x">Cancel</button><button class="btn bp" id="at-ok">Create</button></div>
+  <div class="mft"><button class="btn" id="at-x">İptal</button><button class="btn bp" id="at-ok">Oluştur</button></div>
 </div>
 <div id="m-col" class="modal hidden">
-  <div class="mhd"><span class="mtt">＋ Add Column — <span id="ac-tn" class="ac"></span></span><button class="mx">✕</button></div>
+  <div class="mhd"><span class="mtt">＋ Kolon Ekle — <span id="ac-tn" class="ac"></span></span><button class="mx">✕</button></div>
   <div class="mbd">
     <div class="fgr">
-      <div class="fg"><label>Column Name *</label><input id="ac-n" placeholder="email" autocomplete="off"/></div>
-      <div class="fg"><label>Data Type *</label>
+      <div class="fg"><label>Kolon Adı *</label><input id="ac-n" placeholder="email" autocomplete="off"/></div>
+      <div class="fg"><label>Veri Tipi *</label>
         <select id="ac-t">
-          <optgroup label="Text"><option>VARCHAR(255)</option><option>VARCHAR(100)</option><option>CHAR(36)</option><option>TEXT</option><option>LONGTEXT</option></optgroup>
-          <optgroup label="Numeric"><option>INT</option><option>BIGINT</option><option>TINYINT(1)</option><option>DECIMAL(10,2)</option><option>FLOAT</option></optgroup>
-          <optgroup label="Date"><option>DATE</option><option>DATETIME</option><option>TIMESTAMP</option></optgroup>
-          <optgroup label="Other"><option>JSON</option><option>BLOB</option><option>ENUM('a','b')</option><option value="__c">Custom…</option></optgroup>
+          <optgroup label="Metin"><option>VARCHAR(255)</option><option>VARCHAR(100)</option><option>CHAR(36)</option><option>TEXT</option><option>LONGTEXT</option></optgroup>
+          <optgroup label="Sayısal"><option>INT</option><option>BIGINT</option><option>TINYINT(1)</option><option>DECIMAL(10,2)</option><option>FLOAT</option></optgroup>
+          <optgroup label="Tarih"><option>DATE</option><option>DATETIME</option><option>TIMESTAMP</option></optgroup>
+          <optgroup label="Diğer"><option>JSON</option><option>BLOB</option><option>ENUM('a','b')</option><option value="__c">Özel…</option></optgroup>
         </select>
       </div>
     </div>
-    <div class="fg hidden" id="ac-cw"><label>Custom Type</label><input id="ac-ct" placeholder="SET('a','b')"/></div>
+    <div class="fg hidden" id="ac-cw"><label>Özel Tip</label><input id="ac-ct" placeholder="SET('a','b')"/></div>
     <div class="fgr">
-      <div class="fg"><label>After</label><select id="ac-af"><option value="">— End —</option></select></div>
-      <div class="fg"><label>Default</label><input id="ac-dv" placeholder="NULL"/></div>
+      <div class="fg"><label>Sonrasına</label><select id="ac-af"><option value="">— Sona —</option></select></div>
+      <div class="fg"><label>Varsayılan</label><input id="ac-dv" placeholder="NULL"/></div>
     </div>
-    <div class="fg"><label>Description</label><input id="ac-cm" placeholder=""/></div>
-    <label class="chk"><input type="checkbox" id="ac-nl" checked/> Can be null</label>
+    <div class="fg"><label>Açıklama</label><input id="ac-cm" placeholder=""/></div>
+    <label class="chk"><input type="checkbox" id="ac-nl" checked/> Null olabilir</label>
   </div>
-  <div class="mft"><button class="btn" id="ac-x">Cancel</button><button class="btn bp" id="ac-ok">Add</button></div>
+  <div class="mft"><button class="btn" id="ac-x">İptal</button><button class="btn bp" id="ac-ok">Ekle</button></div>
 </div>
 <div id="m-rel" class="modal hidden">
-  <div class="mhd"><span class="mtt">⟷ Define Relation</span><button class="mx">✕</button></div>
+  <div class="mhd"><span class="mtt">⟷ İlişki Tanımla</span><button class="mx">✕</button></div>
   <div class="mbd">
     <div class="rbd">
-      <div class="rbs"><div class="rbl">👶 Child (FK owner)</div><select id="ar-ft"></select><select id="ar-fc"></select></div>
+      <div class="rbs"><div class="rbl">👶 Child (FK sahibi)</div><select id="ar-ft"></select><select id="ar-fc"></select></div>
       <div class="rba">→</div>
-      <div class="rbs"><div class="rbl">👴 Parent (reference)</div><select id="ar-tt"></select><select id="ar-tc"></select></div>
+      <div class="rbs"><div class="rbl">👴 Parent (referans)</div><select id="ar-tt"></select><select id="ar-tc"></select></div>
     </div>
-    <div class="fg"><label>Constraint Name *</label><input id="ar-n" placeholder="fk_orders_users"/></div>
+    <div class="fg"><label>Kısıt Adı *</label><input id="ar-n" placeholder="fk_orders_users"/></div>
     <div class="fgr">
       <div class="fg"><label>ON DELETE</label><select id="ar-d"><option>RESTRICT</option><option>CASCADE</option><option>SET NULL</option><option>NO ACTION</option></select></div>
       <div class="fg"><label>ON UPDATE</label><select id="ar-u"><option>RESTRICT</option><option>CASCADE</option><option>SET NULL</option><option>NO ACTION</option></select></div>
     </div>
   </div>
-  <div class="mft"><button class="btn" id="ar-x">Cancel</button><button class="btn bp" id="ar-ok">Create</button></div>
+  <div class="mft"><button class="btn" id="ar-x">İptal</button><button class="btn bp" id="ar-ok">Oluştur</button></div>
 </div>
 <div id="m-sql" class="modal hidden">
-  <div class="mhd"><span class="mtt">⌨ Run SQL</span><button class="mx">✕</button></div>
+  <div class="mhd"><span class="mtt">⌨ SQL Çalıştır</span><button class="mx">✕</button></div>
   <div class="mbd">
-    <div class="fg"><label>DDL Command</label><textarea id="sql-in" rows="7" placeholder="ALTER TABLE users ADD INDEX idx_email (email);"></textarea></div>
-    <div class="wn">⚠ Only DDL is recommended. Schema will be refreshed after execution.</div>
+    <div class="fg"><label>DDL Komutu</label><textarea id="sql-in" rows="7" placeholder="ALTER TABLE users ADD INDEX idx_email (email);"></textarea></div>
+    <div class="wn">⚠ Yalnızca DDL önerilir. Sonrasında şema otomatik yenilenir.</div>
   </div>
-  <div class="mft"><button class="btn" id="sql-x">Cancel</button><button class="btn bp" id="sql-ok">Run</button></div>
+  <div class="mft"><button class="btn" id="sql-x">İptal</button><button class="btn bp" id="sql-ok">Çalıştır</button></div>
 </div>
 <div id="m-qb" class="modal mw hidden">
   <div class="mhd"><span class="mtt">⊞ Query Builder</span><button class="mx">✕</button></div>
   <div class="mbd">
     <div class="fgr">
-      <div class="fg"><label>Table</label><select id="qb-tbl"></select></div>
+      <div class="fg"><label>Tablo</label><select id="qb-tbl"></select></div>
       <div class="fg"><label>Limit</label><input id="qb-lim" type="number" value="50" style="width:80px"/></div>
-      <div class="fg" style="flex:0 0 auto;align-self:flex-end"><button class="btn bs bp" id="qb-run">▶ Run</button></div>
+      <div class="fg" style="flex:0 0 auto;align-self:flex-end"><button class="btn bs bp" id="qb-run">▶ Çalıştır</button></div>
     </div>
-    <div class="fg"><label>Columns (if empty *)</label>
-      <div class="qb-fields" id="qb-fields"><em style="font-size:10px;color:var(--t3)">Select table…</em></div>
+    <div class="fg"><label>Kolonlar (boşsa *)</label>
+      <div class="qb-fields" id="qb-fields"><em style="font-size:10px;color:var(--t3)">Tablo seçin…</em></div>
     </div>
     <div class="fgr">
       <div class="fg"><label>WHERE</label><input id="qb-wh" placeholder="id > 100 AND status = 'active'"/></div>
       <div class="fg"><label>ORDER BY</label><input id="qb-ob" placeholder="created_at DESC"/></div>
     </div>
-    <div class="fg"><label>Generated SQL</label><div class="qb-sql" id="qb-sql"></div></div>
-    <div class="fg"><label>Result</label><div class="qb-res" id="qb-res" style="max-height:220px;overflow:auto"></div></div>
+    <div class="fg"><label>Üretilen SQL</label><div class="qb-sql" id="qb-sql"></div></div>
+    <div class="fg"><label>Sonuç</label><div class="qb-res" id="qb-res" style="max-height:220px;overflow:auto"></div></div>
   </div>
-  <div class="mft"><button class="btn" id="qb-x">Close</button><button class="btn bp" id="qb-cp">Copy SQL</button></div>
+  <div class="mft"><button class="btn" id="qb-x">Kapat</button><button class="btn bp" id="qb-cp">SQL Kopyala</button></div>
 </div>
 <div id="m-mig" class="modal mw hidden">
   <div class="mhd"><span class="mtt">📦 Migration Export</span><button class="mx">✕</button></div>
@@ -297,38 +297,38 @@ textarea{resize:vertical;font-family:var(--M);font-size:11px}
       <div class="fg"><label>Format</label>
         <select id="mig-fmt"><option value="sql">SQL (ALTER TABLE)</option><option value="prisma">Prisma Schema</option><option value="typeorm">TypeORM Entities</option></select>
       </div>
-      <div class="fg"><label>Base Snapshot</label><select id="mig-sn"><option value="">New (CREATE TABLE)</option></select></div>
+      <div class="fg"><label>Baz Snapshot</label><select id="mig-sn"><option value="">Yeni (CREATE TABLE)</option></select></div>
     </div>
     <pre id="mig-code" class="co"></pre>
   </div>
-  <div class="mft"><button class="btn" id="mig-gen">Generate</button><button class="btn bp" id="mig-cp">Copy</button><button class="btn" id="mig-x">Close</button></div>
+  <div class="mft"><button class="btn" id="mig-gen">Üret</button><button class="btn bp" id="mig-cp">Kopyala</button><button class="btn" id="mig-x">Kapat</button></div>
 </div>
 <div id="m-sn" class="modal hidden">
-  <div class="mhd"><span class="mtt">🕐 Snapshot History</span><button class="mx">✕</button></div>
+  <div class="mhd"><span class="mtt">🕐 Snapshot Geçmişi</span><button class="mx">✕</button></div>
   <div class="mbd">
     <div class="fgr" style="margin-bottom:8px">
-      <input id="sn-lbl" placeholder="Snapshot name (optional)"/>
-      <button class="btn bs bp" id="sn-sv" style="white-space:nowrap">Save</button>
+      <input id="sn-lbl" placeholder="Snapshot adı (isteğe bağlı)"/>
+      <button class="btn bs bp" id="sn-sv" style="white-space:nowrap">Kaydet</button>
     </div>
     <div class="il" id="sn-list"></div>
   </div>
-  <div class="mft"><button class="btn" id="sn-x">Close</button></div>
+  <div class="mft"><button class="btn" id="sn-x">Kapat</button></div>
 </div>
 <div id="m-df" class="modal mw hidden">
   <div class="mhd"><span class="mtt">⊕ Schema Diff</span><button class="mx">✕</button></div>
   <div class="mbd">
     <div class="fgr" style="margin-bottom:12px">
-      <div class="fg"><label>Snapshot to Compare</label><select id="df-sn"><option value="">— Select —</option></select></div>
-      <button class="btn bs bp" id="df-run" style="align-self:flex-end">Compare</button>
+      <div class="fg"><label>Karşılaştırılacak Snapshot</label><select id="df-sn"><option value="">— Seç —</option></select></div>
+      <button class="btn bs bp" id="df-run" style="align-self:flex-end">Karşılaştır</button>
     </div>
     <div id="df-result"></div>
   </div>
-  <div class="mft"><button class="btn" id="df-x">Close</button></div>
+  <div class="mft"><button class="btn" id="df-x">Kapat</button></div>
 </div>
 <div id="m-nt" class="modal hidden">
-  <div class="mhd"><span class="mtt">📝 Note — <span id="nt-tbl" class="ac"></span></span><button class="mx">✕</button></div>
-  <div class="mbd"><textarea id="nt-in" rows="8" placeholder="Notes about this table…"></textarea></div>
-  <div class="mft"><button class="btn" id="nt-x">Cancel</button><button class="btn bp" id="nt-ok">Save</button></div>
+  <div class="mhd"><span class="mtt">📝 Not — <span id="nt-tbl" class="ac"></span></span><button class="mx">✕</button></div>
+  <div class="mbd"><textarea id="nt-in" rows="8" placeholder="Bu tablo hakkında notlar…"></textarea></div>
+  <div class="mft"><button class="btn" id="nt-x">İptal</button><button class="btn bp" id="nt-ok">Kaydet</button></div>
 </div>
 </div>
 <ul id="ctx" class="ctx hidden"></ul>
@@ -348,9 +348,7 @@ const mc=document.getElementById('mm').getContext('2d');
 let stT;
 window.addEventListener('message',e=>{
   const m=e.data;
-  console.log('[Webview] Received message:', m.type, m);
   if(m.type==='schema'){
-    console.log('[Webview] Schema received:', m.data.tables.length, 'tables');
     schema=m.data;
     if(m.layout)layout=m.layout;
     if(m.collapsed)collapsed=new Set(m.collapsed);
@@ -361,12 +359,9 @@ window.addEventListener('message',e=>{
     document.getElementById('stc').textContent=schema.tables.reduce((a,t)=>a+t.columns.length,0);
     document.getElementById('str').textContent=schema.relationships.length;
     document.getElementById('sti').textContent=schema.tables.reduce((a,t)=>a+(t.indexes||[]).filter(i=>!i.primary).length,0);
-    console.log('[Webview] Stats updated, calling doLayout...');
-    doLayout();
-    console.log('[Webview] Layout done, calling renderAll...');
+    doLayout(false); // preserve existing drag positions
     renderAll();
-    console.log('[Webview] Render complete');
-    st('Schema loaded — '+schema.tables.length+' tables, '+schema.relationships.length+' relations','ok');
+    st('Şema yüklendi — '+schema.tables.length+' tablo, '+schema.relationships.length+' ilişki','ok');
   }
   else if(m.type==='success')st(m.message,'ok');
   else if(m.type==='error')st(m.message,'er');
@@ -378,10 +373,11 @@ window.addEventListener('message',e=>{
 });
 let layoutMode='hierarchical';
 let renderPending=false;
-function doLayout(){
+function doLayout(force){
   const mode=document.getElementById('layout-mode').value;
   layoutMode=mode;
-  layout={}; // Reset layout for new mode
+  // Only reset layout when mode changes or forced (not on every schema refresh)
+  if(force){layout={};}
   if(mode==='snowflake')doSnowflakeLayout();
   else if(mode==='compact')doCompactLayout();
   else doHierarchicalLayout();
@@ -619,10 +615,10 @@ function renderTbls(cm){
     hdr.addEventListener('contextmenu',e=>{e.preventDefault();e.stopPropagation();
       showCtx(e.clientX,e.clientY,[
         {label:'⬡ '+t.name,cls:'dis'},{sep:true},
-        {label:'＋ Add Column',act:()=>openAddCol(t.name)},
-        {label:'⟷ Add Relation',act:()=>openAddRel(t.name)},
-        {label:'📝 Add Note',act:()=>openNotes(t.name)},{sep:true},
-        {label:'✕ Delete Table',cls:'er',act:()=>post({type:'dropTable',data:{name:t.name}})},
+        {label:'＋ Kolon Ekle',act:()=>openAddCol(t.name)},
+        {label:'⟷ İlişki Ekle',act:()=>openAddRel(t.name)},
+        {label:'📝 Not Ekle',act:()=>openNotes(t.name)},{sep:true},
+        {label:'✕ Tabloyu Sil',cls:'er',act:()=>post({type:'dropTable',data:{name:t.name}})},
       ]);
     });
     g.appendChild(hdr);
@@ -645,7 +641,7 @@ function renderTbls(cm){
         const ct=se('text',{x:TW-7,y:cy+CH/2,style:'fill:var(--t3);font-family:var(--M);font-size:9px;dominant-baseline:central;text-anchor:end'});ct.textContent=trunc(col.type,13);row.appendChild(ct);
         if(i<t.columns.length-1)row.appendChild(se('line',{x1:4,y1:cy+CH,x2:TW,y2:cy+CH,stroke:'var(--b)','stroke-width':.4}));
         row.addEventListener('contextmenu',e=>{e.preventDefault();e.stopPropagation();
-          showCtx(e.clientX,e.clientY,[{label:col.name+' · '+col.type,cls:'dis'},{sep:true},{label:'✕ Delete Column',cls:'er',act:()=>post({type:'dropColumn',data:{table:t.name,column:col.name}})}]);
+          showCtx(e.clientX,e.clientY,[{label:col.name+' · '+col.type,cls:'dis'},{sep:true},{label:'✕ Kolonu Sil',cls:'er',act:()=>post({type:'dropColumn',data:{table:t.name,column:col.name}})}]);
         });
         g.appendChild(row);
       });
@@ -672,7 +668,7 @@ function renderTbls(cm){
     const foot=se('g',{class:'addbtn'});
     foot.appendChild(se('rect',{x:4,y:fy,width:TW-4,height:FH,fill:'transparent'}));
     const ft=se('text',{x:TW/2,y:fy+FH/2,style:'fill:'+color+';font-family:var(--F);font-size:10px;dominant-baseline:central;text-anchor:middle;font-weight:600'});
-    ft.textContent='＋ Add Column';foot.appendChild(ft);
+    ft.textContent='＋ Kolon Ekle';foot.appendChild(ft);
     foot.addEventListener('click',e=>{e.stopPropagation();openAddCol(t.name);});g.appendChild(foot);
     g.appendChild(se('rect',{class:'tblf',x:0,y:0,width:TW,height:h,rx:10,fill:'none',stroke:isSel?'var(--a)':'var(--b)','stroke-width':isSel?2:1}));
     g.addEventListener('click',e=>{e.stopPropagation();sel=t.name;renderTbls(cm);});
@@ -702,7 +698,7 @@ function renderRels(cm){
       showCtx(e.clientX,e.clientY,[
         {label:rel.fromTable+'.'+rel.fromColumn+' → '+rel.toTable+'.'+rel.toColumn,cls:'dis'},
         {label:rel.onDelete+' / '+rel.onUpdate,cls:'dis'},{sep:true},
-        {label:'✕ Delete Relation',cls:'er',act:()=>post({type:'dropRelationship',data:{table:rel.fromTable,constraintName:rel.constraintName}})},
+        {label:'✕ İlişkiyi Sil',cls:'er',act:()=>post({type:'dropRelationship',data:{table:rel.fromTable,constraintName:rel.constraintName}})},
       ]);
     });
     gr.appendChild(path);
@@ -754,7 +750,7 @@ document.getElementById('ctf').addEventListener('change',e=>{
 });
 // Layout mode change
 document.getElementById('layout-mode').addEventListener('change',()=>{
-  doLayout();
+  doLayout(true); // force reset on mode switch
   renderAll();
   fitScreen();
 });
@@ -821,7 +817,7 @@ document.getElementById('bex').addEventListener('click',()=>{
     img.src=url;
   } catch(e) {
     console.error('PNG export error:',e);
-    st('Export error: '+e.message,'er');
+    st('Export hatası: '+e.message,'er');
   }
 });
 document.getElementById('bmg').addEventListener('click',()=>{post({type:'listSnapshots'});openM('m-mig');});
@@ -829,60 +825,60 @@ document.getElementById('mig-gen').addEventListener('click',()=>{
   post({type:'exportMigration',format:document.getElementById('mig-fmt').value,fromId:document.getElementById('mig-sn').value});
 });
 document.getElementById('mig-cp').addEventListener('click',()=>{
-  navigator.clipboard?.writeText(document.getElementById('mig-code').textContent||'');st('Copied!','ok');
+  navigator.clipboard?.writeText(document.getElementById('mig-code').textContent||'');st('Kopyalandı!','ok');
 });
 document.getElementById('mig-x').addEventListener('click',closeAll);
 function populateMig(){
-  const s=document.getElementById('mig-sn');s.innerHTML='<option value="">New (CREATE TABLE)</option>';
+  const s=document.getElementById('mig-sn');s.innerHTML='<option value="">Yeni (CREATE TABLE)</option>';
   snaps.forEach(sn=>{const o=document.createElement('option');o.value=sn.id;o.textContent=sn.label+' ('+fmtDate(sn.capturedAt)+')';s.appendChild(o);});
 }
 document.getElementById('bsn').addEventListener('click',()=>{post({type:'listSnapshots'});openM('m-sn');});
 document.getElementById('sn-sv').addEventListener('click',()=>{
   const lbl=document.getElementById('sn-lbl').value.trim();
-  post({type:'saveSnapshot',label:lbl||new Date().toLocaleString('en-US')});
+  post({type:'saveSnapshot',label:lbl||new Date().toLocaleString('tr-TR')});
   document.getElementById('sn-lbl').value='';
 });
 document.getElementById('sn-x').addEventListener('click',closeAll);
 function renderSnaps(){
   const el=document.getElementById('sn-list');el.innerHTML='';
-  if(!snaps.length){el.innerHTML='<div style="color:var(--t3);font-size:11px;padding:8px">No snapshots yet.</div>';return;}
+  if(!snaps.length){el.innerHTML='<div style="color:var(--t3);font-size:11px;padding:8px">Henüz snapshot yok.</div>';return;}
   snaps.forEach(s=>{
     const row=document.createElement('div');row.className='ir';
     const l=document.createElement('div');l.innerHTML='<div class="irl">'+esc(s.label)+'</div><div class="irs">'+fmtDate(s.capturedAt)+'</div>';
     const btns=document.createElement('div');btns.className='irb';
-    const lb=document.createElement('button');lb.className='btn bs';lb.textContent='Load';lb.onclick=()=>{post({type:'loadSnapshot',id:s.id});closeAll();};
+    const lb=document.createElement('button');lb.className='btn bs';lb.textContent='Yükle';lb.onclick=()=>{post({type:'loadSnapshot',id:s.id});closeAll();};
     const db=document.createElement('button');db.className='btn bs';db.style.color='var(--er)';db.textContent='✕';db.onclick=()=>post({type:'deleteSnapshot',id:s.id});
     btns.append(lb,db);row.append(l,btns);el.appendChild(row);
   });
 }
 document.getElementById('bdf').addEventListener('click',()=>{post({type:'listSnapshots'});openM('m-df');});
 document.getElementById('df-run').addEventListener('click',()=>{
-  const id=document.getElementById('df-sn').value;if(!id){st('Select a snapshot','er');return;}
+  const id=document.getElementById('df-sn').value;if(!id){st('Snapshot seçin','er');return;}
   post({type:'diffWithSnapshot',id});
 });
 document.getElementById('df-x').addEventListener('click',closeAll);
 function populateDiff(){
-  const s=document.getElementById('df-sn');s.innerHTML='<option value="">— Select —</option>';
+  const s=document.getElementById('df-sn');s.innerHTML='<option value="">— Seç —</option>';
   snaps.forEach(sn=>{const o=document.createElement('option');o.value=sn.id;o.textContent=sn.label+' ('+fmtDate(sn.capturedAt)+')';s.appendChild(o);});
 }
 function renderDiff(diff,summary){
   const el=document.getElementById('df-result');
-  el.innerHTML='<div style="font-size:11px;color:var(--t2);margin-bottom:10px">Summary: <strong>'+esc(summary)+'</strong></div>';
+  el.innerHTML='<div style="font-size:11px;color:var(--t2);margin-bottom:10px">Özet: <strong>'+esc(summary)+'</strong></div>';
   const add=(ttl,items,cls)=>{if(!items||!items.length)return;const sec=document.createElement('div');sec.className='ds';sec.innerHTML='<h4>'+ttl+'</h4>';items.forEach(i=>{const d=document.createElement('div');d.className=cls;d.textContent=i;sec.appendChild(d);});el.appendChild(sec);};
-  add('➕ Added Tables',diff.addedTables,'da');
-  add('➖ Removed Tables',diff.removedTables,'dr');
-  add('➕ Added Relations',diff.addedRelationships,'da');
-  add('➖ Removed Relations',diff.removedRelationships,'dr');
+  add('➕ Eklenen Tablolar',diff.addedTables,'da');
+  add('➖ Silinen Tablolar',diff.removedTables,'dr');
+  add('➕ Eklenen İlişkiler',diff.addedRelationships,'da');
+  add('➖ Silinen İlişkiler',diff.removedRelationships,'dr');
   diff.modifiedTables.forEach(mod=>{
     const sec=document.createElement('div');sec.className='ds';sec.innerHTML='<h4>~ '+esc(mod.name)+'</h4>';
-    mod.addedColumns.forEach(c=>{const d=document.createElement('div');d.className='da';d.textContent='+ column: '+c;sec.appendChild(d);});
-    mod.removedColumns.forEach(c=>{const d=document.createElement('div');d.className='dr';d.textContent='- column: '+c;sec.appendChild(d);});
+    mod.addedColumns.forEach(c=>{const d=document.createElement('div');d.className='da';d.textContent='+ kolon: '+c;sec.appendChild(d);});
+    mod.removedColumns.forEach(c=>{const d=document.createElement('div');d.className='dr';d.textContent='- kolon: '+c;sec.appendChild(d);});
     mod.addedIndexes.forEach(i=>{const d=document.createElement('div');d.className='da';d.textContent='+ index: '+i;sec.appendChild(d);});
     mod.removedIndexes.forEach(i=>{const d=document.createElement('div');d.className='dr';d.textContent='- index: '+i;sec.appendChild(d);});
     el.appendChild(sec);
   });
   if(!diff.addedTables.length&&!diff.removedTables.length&&!diff.modifiedTables.length&&!diff.addedRelationships.length&&!diff.removedRelationships.length)
-    el.innerHTML+='<div class="de">No differences between schemas.</div>';
+    el.innerHTML+='<div class="de">Şemalar arasında fark yok.</div>';
 }
 document.getElementById('bnq').addEventListener('click',()=>{
   const sel2=document.getElementById('qb-tbl');sel2.innerHTML='';
@@ -894,7 +890,7 @@ function loadQBFields(){
   const tbl=document.getElementById('qb-tbl').value;
   const t=schema.tables.find(t=>t.name===tbl);
   const el=document.getElementById('qb-fields');el.innerHTML='';
-  if(!t){el.innerHTML='<em style="font-size:10px;color:var(--t3)">Select table…</em>';return;}
+  if(!t){el.innerHTML='<em style="font-size:10px;color:var(--t3)">Tablo seçin…</em>';return;}
   t.columns.forEach(c=>{
     const chip=document.createElement('div');chip.className='qb-chip';chip.dataset.col=c.name;
     chip.innerHTML=c.name+' <span style="opacity:.6;font-size:9px">'+c.type+'</span> <span>✕</span>';
@@ -918,20 +914,20 @@ function buildSQL(){
 }
 document.getElementById('qb-run').addEventListener('click',()=>{
   const sql=document.getElementById('qb-sql').textContent;
-  if(!sql){st('Select a table first','er');return;}
-  document.getElementById('qb-res').innerHTML='<div style="color:var(--t3);font-size:10px;padding:4px">Query running…</div>';
+  if(!sql){st('Önce tablo seçin','er');return;}
+  document.getElementById('qb-res').innerHTML='<div style="color:var(--t3);font-size:10px;padding:4px">Sorgu çalıştırılıyor…</div>';
   post({type:'executeQuery',sql});
 });
-document.getElementById('qb-cp').addEventListener('click',()=>{navigator.clipboard?.writeText(document.getElementById('qb-sql').textContent||'');st('SQL copied!','ok');});
+document.getElementById('qb-cp').addEventListener('click',()=>{navigator.clipboard?.writeText(document.getElementById('qb-sql').textContent||'');st('SQL kopyalandı!','ok');});
 document.getElementById('qb-x').addEventListener('click',closeAll);
 function renderQueryResult(rows){
   const el=document.getElementById('qb-res');
-  if(!rows||!rows.length){el.innerHTML='<div style="color:var(--t3);font-size:11px;padding:8px">No results.</div>';return;}
+  if(!rows||!rows.length){el.innerHTML='<div style="color:var(--t3);font-size:11px;padding:8px">Sonuç yok.</div>';return;}
   const keys=Object.keys(rows[0]||{});
   let h='<table><thead><tr>'+keys.map(k=>'<th>'+esc(k)+'</th>').join('')+'</tr></thead><tbody>';
   rows.slice(0,200).forEach(r=>{h+='<tr>'+keys.map(k=>'<td>'+esc(String(r[k]??''))+'</td>').join('')+'</tr>';});
   h+='</tbody></table>';
-  if(rows.length>200)h+='<div style="color:var(--t3);font-size:9px;padding:4px">'+rows.length+' rows, first 200 shown</div>';
+  if(rows.length>200)h+='<div style="color:var(--t3);font-size:9px;padding:4px">'+rows.length+' satır, ilk 200 gösteriliyor</div>';
   el.innerHTML=h;
 }
 // Note tooltip
@@ -968,7 +964,7 @@ document.getElementById('bnt').addEventListener('click',()=>{
 function addAtRow(def){
   if(def===undefined)def=false;
   const w=document.getElementById('at-cols'),d=document.createElement('div');d.className='atr';
-  d.innerHTML='<input class="an" placeholder="column_name" value="'+(def?'id':'')+'" autocomplete="off"/>'+
+  d.innerHTML='<input class="an" placeholder="kolon_adi" value="'+(def?'id':'')+'" autocomplete="off"/>'+
     '<select class="at"><option '+(def?'selected':'')+'>BIGINT</option><option>INT</option><option>VARCHAR(255)</option><option>VARCHAR(100)</option><option>TEXT</option><option>TINYINT(1)</option><option>DECIMAL(10,2)</option><option>DATETIME</option><option>TIMESTAMP</option><option>JSON</option></select>'+
     '<div class="atrc">'+
     '<label class="atch"><input type="checkbox" class="apk" '+(def?'checked':'')+'/>&nbsp;PK</label>'+
@@ -981,9 +977,9 @@ function addAtRow(def){
 document.getElementById('at-add').addEventListener('click',()=>addAtRow());
 document.getElementById('at-x').addEventListener('click',closeAll);
 document.getElementById('at-ok').addEventListener('click',()=>{
-  const name=document.getElementById('at-n').value.trim();if(!name){st('Table name is required','er');return;}
+  const name=document.getElementById('at-n').value.trim();if(!name){st('Tablo adı zorunlu','er');return;}
   const cols=[...document.querySelectorAll('.atr')].map(r=>({name:r.querySelector('.an').value.trim(),type:r.querySelector('.at').value,isPrimaryKey:r.querySelector('.apk').checked,isAutoIncrement:r.querySelector('.aai').checked,nullable:!r.querySelector('.ann').checked})).filter(c=>c.name);
-  if(!cols.length){st('Add at least one column','er');return;}
+  if(!cols.length){st('En az bir kolon ekle','er');return;}
   post({type:'addTable',data:{name,columns:cols,comment:document.getElementById('at-c').value.trim()}});closeAll();
 });
 function openAddCol(tbl){
@@ -996,9 +992,9 @@ function openAddCol(tbl){
   const t=schema.tables.find(t=>t.name===tbl);if(t)t.columns.forEach(c=>{const o=document.createElement('option');o.value=c.name;o.textContent=c.name;af.appendChild(o);});
   openM('m-col');document.getElementById('ac-n').focus();
   document.getElementById('ac-ok').onclick=()=>{
-    const n=document.getElementById('ac-n').value.trim();if(!n){st('Column name is required','er');return;}
+    const n=document.getElementById('ac-n').value.trim();if(!n){st('Kolon adı zorunlu','er');return;}
     let tp=document.getElementById('ac-t').value;if(tp==='__c')tp=document.getElementById('ac-ct').value.trim();
-    if(!tp){st('Type is required','er');return;}
+    if(!tp){st('Tip zorunlu','er');return;}
     post({type:'addColumn',data:{table:tbl,name:n,type:tp,nullable:document.getElementById('ac-nl').checked,defaultValue:document.getElementById('ac-dv').value.trim()||undefined,afterColumn:document.getElementById('ac-af').value||undefined,comment:document.getElementById('ac-cm').value.trim()||undefined}});closeAll();
   };
 }
@@ -1014,7 +1010,7 @@ function openAddRel(fromTbl){
   const upd=()=>{document.getElementById('ar-n').value='fk_'+fs.value+'_'+ts.value;};upd();
   openM('m-rel');
   document.getElementById('ar-ok').onclick=()=>{
-    const cn=document.getElementById('ar-n').value.trim();if(!cn){st('Constraint name is required','er');return;}
+    const cn=document.getElementById('ar-n').value.trim();if(!cn){st('Kısıt adı zorunlu','er');return;}
     post({type:'addRelationship',data:{constraintName:cn,fromTable:fs.value,fromColumn:fc.value,toTable:ts.value,toColumn:tc.value,onDelete:document.getElementById('ar-d').value,onUpdate:document.getElementById('ar-u').value}});closeAll();
   };
 }
@@ -1034,9 +1030,9 @@ document.querySelectorAll('.mx').forEach(b=>b.addEventListener('click',closeAll)
 function st(msg,type){sbm.textContent=msg;sbm.className=type||'';clearTimeout(stT);if(type)stT=setTimeout(()=>{sbm.textContent='';sbm.className='';},6000);}
 function se(tag,a){a=a||{};const el=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const k in a)el.setAttribute(k,a[k]);return el;}
 function trunc(s,n){return s&&s.length>n?s.slice(0,n-1)+'…':s||'';}
-function esc(s){return String(s).replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>');}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function fmt(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':String(n);}
-function fmtDate(iso){try{return new Date(iso).toLocaleDateString('en-US',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});}catch{return iso;}}
+function fmtDate(iso){try{return new Date(iso).toLocaleDateString('tr-TR',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});}catch{return iso;}}
 tr();post({type:'ready'});
 })();
 </script>

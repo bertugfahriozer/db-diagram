@@ -11,7 +11,7 @@ export class ConnectionPanel {
   static show(ctx: vscode.ExtensionContext, db: DatabaseManager, tree: ConnectionsProvider, snaps: SnapshotManager, prefill?: Partial<ConnectionConfig>): void {
     if (ConnectionPanel.panel) { ConnectionPanel.panel.reveal(); return; }
     const saved: Partial<ConnectionConfig> = prefill ?? ctx.globalState.get('dbdiagram.lastConn') ?? {};
-    const panel = vscode.window.createWebviewPanel('dbConnect', 'DB Diagram — Connect', vscode.ViewColumn.One, { enableScripts: true });
+    const panel = vscode.window.createWebviewPanel('dbConnect', 'DB Diagram — Bağlan', vscode.ViewColumn.One, { enableScripts: true });
     ConnectionPanel.panel = panel;
     panel.webview.html = buildHtml(saved);
 
@@ -35,12 +35,7 @@ export class ConnectionPanel {
 
         // Panel'i kapat ve diagram panelini aç
         panel.dispose();
-        ConnectionPanel.panel = undefined;
-
-        // Kısa bir bekleme sonrası diagram panelini aç (panel dispose işlemi tamamlansın)
-        setTimeout(() => {
-          DiagramPanel.createOrShow(ctx, db, snaps, tree);
-        }, 100);
+        DiagramPanel.createOrShow(ctx, db, snaps, tree);
       } catch (e: unknown) {
         panel.webview.postMessage({ type: 'error', message: e instanceof Error ? e.message : String(e) });
       }
@@ -55,8 +50,8 @@ function h(v: unknown): string { return String(v ?? '').replace(/"/g, '&quot;');
 function buildHtml(saved: Partial<ConnectionConfig>): string {
   const type = saved.type ?? 'mysql';
   const port = saved.port ?? (type === 'postgresql' ? 5432 : 3306);
-  return `<!DOCTYPE html><html lang="en">
-<head><meta charset="UTF-8"><title>Connect</title><style>
+  return `<!DOCTYPE html><html lang="tr">
+<head><meta charset="UTF-8"><title>Bağlan</title><style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0d0f18;--s:#171a26;--s2:#1e2130;--b:#2a2d45;--a:#6366f1;--a2:#818cf8;--r:#ef4444;--t:#e2e8f0;--t2:#94a3b8;--t3:#64748b;--R:8px}
 body{background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -95,16 +90,16 @@ select option{background:var(--s2)}
     <div class="fg"><label>Host</label><input id="host" value="${h(saved.host??'localhost')}"/></div>
     <div class="fg sm"><label>Port</label><input id="port" type="number" value="${h(port)}"/></div>
   </div>
-  <div class="fg"><label>Database</label><input id="database" value="${h(saved.database??'')}"/></div>
+  <div class="fg"><label>Veritabanı</label><input id="database" value="${h(saved.database??'')}"/></div>
   <hr class="sep"/>
-  <div class="fg"><label>User</label><input id="user" value="${h(saved.user??'root')}"/></div>
-  <div class="fg"><label>Password</label><input id="pw" type="password" autocomplete="new-password"/></div>
+  <div class="fg"><label>Kullanıcı</label><input id="user" value="${h(saved.user??'root')}"/></div>
+  <div class="fg"><label>Şifre</label><input id="pw" type="password" autocomplete="new-password"/></div>
   <hr class="sep"/>
-  <div class="fg"><label>Connection Name</label><input id="cname" placeholder="Production DB (optional)"/></div>
-  <label class="chk"><input type="checkbox" id="save" checked/> Save connection</label>
-  <button class="btn" id="btn" onclick="connect()"><span id="lbl">Connect</span></button>
+  <div class="fg"><label>Bağlantı Adı</label><input id="cname" placeholder="Üretim DB (isteğe bağlı)"/></div>
+  <label class="chk"><input type="checkbox" id="save" checked/> Bağlantıyı kaydet</label>
+  <button class="btn" id="btn" onclick="connect()"><span id="lbl">Bağlan</span></button>
   <div class="err" id="err"></div>
-  <p class="hint">Password is never saved (VS Code SecretStorage)</p>
+  <p class="hint">Şifre hiçbir zaman kaydedilmez (VS Code SecretStorage)</p>
 </div>
 <script>
 const vscode = acquireVsCodeApi();
@@ -128,13 +123,13 @@ function connect(){
   const password=document.getElementById('pw').value;
   const name=document.getElementById('cname').value.trim()||database;
   const save=document.getElementById('save').checked;
-  if(!host){showErr('Host is required');return;}
-  if(!database){showErr('Database name is required');return;}
-  if(!user){showErr('Username is required');return;}
+  if(!host){showErr('Host zorunlu');return;}
+  if(!database){showErr('Veritabanı adı zorunlu');return;}
+  if(!user){showErr('Kullanıcı adı zorunlu');return;}
   hideErr();
   vscode.postMessage({type:'connect',password,save,cfg:{type:dbType,host,port,database,user,name,id:Date.now().toString(36)}});
 }
-function setLoad(on){const btn=document.getElementById('btn'),lbl=document.getElementById('lbl');btn.disabled=on;lbl.innerHTML=on?'<div class="spin"></div> Connecting…':'Connect';}
+function setLoad(on){const btn=document.getElementById('btn'),lbl=document.getElementById('lbl');btn.disabled=on;lbl.innerHTML=on?'<div class="spin"></div> Bağlanıyor…':'Bağlan';}
 function showErr(m){const e=document.getElementById('err');e.textContent=m;e.style.display='block';}
 function hideErr(){document.getElementById('err').style.display='none';}
 document.addEventListener('keydown',e=>{if(e.key==='Enter')connect();});
